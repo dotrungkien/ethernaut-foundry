@@ -11,13 +11,14 @@ contract FalloutTest is Test {
     FalloutFactory level;
     Fallout instance;
     address player = address(123456);
+    address instanceAddress;
 
     function setUp() public {
         ethernaut = new Ethernaut();
         level = new FalloutFactory();
         ethernaut.registerLevel(level);
         startHoax(player);
-        address instanceAddress = ethernaut.createLevelInstance(level);
+        instanceAddress = ethernaut.createLevelInstance(level);
         instance = Fallout(payable(instanceAddress));
     }
 
@@ -26,15 +27,15 @@ contract FalloutTest is Test {
         assertEq(instance.owner(), player);
         emit log_named_uint(
             "Fallout contract balance before",
-            address(instance).balance
+            instanceAddress.balance
         );
         instance.collectAllocations();
         emit log_named_uint(
             "Fallout contract balance after",
-            address(instance).balance
+            instanceAddress.balance
         );
         bool levelCompleted = ethernaut.submitLevelInstance(
-            payable(address(instance))
+            payable(instanceAddress)
         );
         assert(levelCompleted);
     }
