@@ -11,5 +11,5 @@ Walkthrough: [https://www.kiendt.me/](https://www.kiendt.me/).
 ## Running challenges
 
 ```bash
-forge test --contracts test/1.Fallback.t.sol -vv
+forge test --match-contract FallbackTest -vvv
 ```
