@@ -17,7 +17,7 @@ contract TokenTest is Test {
         ethernaut = new Ethernaut();
         level = new TokenFactory();
         ethernaut.registerLevel(level);
-        startHoax(player, player);
+        startHoax(player);
         instanceAddress = ethernaut.createLevelInstance(level);
         instance = Token(payable(instanceAddress));
     }

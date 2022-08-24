@@ -17,7 +17,7 @@ contract DelegationTest is Test {
         ethernaut = new Ethernaut();
         level = new DelegationFactory();
         ethernaut.registerLevel(level);
-        startHoax(player, player);
+        startHoax(player);
         instanceAddress = ethernaut.createLevelInstance(level);
         instance = Delegation(payable(instanceAddress));
     }

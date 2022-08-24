@@ -19,7 +19,7 @@ contract ForceTest is Test {
         ethernaut = new Ethernaut();
         level = new ForceFactory();
         ethernaut.registerLevel(level);
-        startHoax(player, player);
+        startHoax(player);
         instanceAddress = ethernaut.createLevelInstance(level);
         instance = Force(payable(instanceAddress));
     }

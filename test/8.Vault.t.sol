@@ -18,7 +18,7 @@ contract VaultTest is Test {
         ethernaut = new Ethernaut();
         level = new VaultFactory();
         ethernaut.registerLevel(level);
-        startHoax(player, player);
+        startHoax(player);
         instanceAddress = ethernaut.createLevelInstance(level);
         instance = Vault(payable(instanceAddress));
     }
