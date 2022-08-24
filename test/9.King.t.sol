@@ -30,6 +30,16 @@ contract KingTest is Test {
         emit log_uint(prize);
         hack.attack{value: prize}();
 
+        // other cannot be the King anymore
+        vm.stopPrank();
+        vm.startPrank(address(222));
+        deal(address(222), 5 ether);
+        vm.expectRevert();
+        instanceAddress.call{value: prize}("");
+        vm.stopPrank();
+
+        startHoax(player);
+
         bool levelCompleted = ethernaut.submitLevelInstance(
             payable(instanceAddress)
         );

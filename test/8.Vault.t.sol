@@ -12,7 +12,6 @@ contract VaultTest is Test {
     Vault instance;
     address player = address(123456);
     address instanceAddress;
-    using stdStorage for StdStorage;
 
     function setUp() public {
         ethernaut = new Ethernaut();
