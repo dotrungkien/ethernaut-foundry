@@ -10,7 +10,7 @@ contract NaughtCoinTest is Test {
     Ethernaut ethernaut;
     NaughtCoinFactory level;
     NaughtCoin instance;
-    address player = makeAddr("hello gate keeper");
+    address player = address(123456);
     address instanceAddress;
 
     function setUp() public {

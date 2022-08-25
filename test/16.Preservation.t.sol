@@ -12,7 +12,7 @@ contract PreservationTest is Test {
     PreservationFactory level;
     Preservation instance;
     PreservationHack hack;
-    address player = makeAddr("hello gate keeper");
+    address player = address(123456);
     address instanceAddress;
 
     function setUp() public {
